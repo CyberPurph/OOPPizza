@@ -17,9 +17,12 @@ class Pizza:
     def total(self):
         if self.num >= 3:
             total = self.num * self.price * 0.85
+        else:
+            total = self.num * self.price
+        return total
 
     def __str__(self):
-        return f"^^PIIZAS^^ \nSize - {self.size} \nPrice - {self.price} \nQuantity {self.num}"
+        return f"^^PIIZAS^^ \nSize - {self.size} \nPrice per Pizza - {self.price} \nQuantity - {self.num}"
     
 #Input
 user_name = input("Who's ordering? ")
@@ -36,12 +39,18 @@ pizza_price = {
 if pizza_size not in pizza_price:
     print("Please enter pizza size as shown. Try again.")
 
-pizza_num = input("Enter the amount of pizzas you want ")
+pizza_num = int(input("Enter the amount of pizzas you want "))
 
 #Objects
 user = User(user_name, user_email, user_address)
 pizza = Pizza(pizza_size, pizza_price[pizza_size], pizza_num)
 
+#Total Price
+
+total = pizza.total()
+
 #Display
+print("YOUR ORDER")
 print(user)
 print(pizza)
+print("Your total is $", total)
